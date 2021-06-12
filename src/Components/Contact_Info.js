@@ -1,22 +1,9 @@
-import { useContext, useEffect, useState } from "react";
-import { useParams } from "react-router";
-import { ContactContext } from "./Context/ContactContext";
 import user from '../img/user.png';
 
-const Contact_Info = () => {
-
-    const { id } = useParams();
-    const { allContact } = useContext(ContactContext);
-
-    const [contactDetail, setContactDetail] = useState({});
-
-    const person = allContact.find(contact => contact.id == id);
-
-    useEffect(() => {
-        setContactDetail(person);
-    }, []);
-
-    const { name, email } = contactDetail;
+const Contact_Info = (props) => {
+    console.log(props);
+    const { history, location, match } = props;
+    const { id, name, email } = location.state;
 
     return (
         <div className="main">
@@ -29,8 +16,6 @@ const Contact_Info = () => {
                     <div className="description">{email}</div>
                 </div>
             </div>
-
-
         </div>
     );
 };

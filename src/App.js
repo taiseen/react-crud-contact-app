@@ -5,11 +5,13 @@ import {
     Route
 } from "react-router-dom";
 import Header from './Components/Header';
-import PageNotFound from './Components/PageNotFound';
 import Contact_Add from './Components/Contact_Add';
 import Contact_List from './Components/Contact_List';
+import Contact_Info from './Components/Contact_Info';
+import PageNotFound from './Components/PageNotFound';
 import ContactContextProvider from './Components/Context/ContactContext';
 
+// 12-Jun-2021 
 
 const App = () => {
 
@@ -18,21 +20,11 @@ const App = () => {
             <ContactContextProvider>
                 <Router >
                     <Header />
-                    <Contact_Add />
-                    <Contact_List />
-
                     <Switch>
-                        <Route path="/home">
-
-                        </Route>
-
-                        <Route exact path="/">
-
-                        </Route>
-
-                        <Route path="*">
-                            <PageNotFound />
-                        </Route>
+                        <Route path="/" exact component={Contact_List} />
+                        <Route path="/contact/:id" component={Contact_Info} />
+                        <Route path="/contact_add" component={Contact_Add} />
+                        <Route path="*" component={PageNotFound} />
                     </Switch>
                 </Router>
             </ContactContextProvider>

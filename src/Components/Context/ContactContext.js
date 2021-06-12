@@ -1,3 +1,4 @@
+// 12-Jun-2021
 import { createContext, useEffect, useState } from 'react';
 
 export const ContactContext = createContext();
@@ -13,12 +14,16 @@ const ContactContextProvider = (props) => {
         setAllContact(newContact);
     }
 
+    const contactDelete = (id) => {
+        const contacts = allContact.filter(con => con.id !== id);
+        setAllContact(contacts);
+    }
     // it must be 1st 
     useEffect(() => {
         const contacts = JSON.parse(localStorage.getItem(KEY));
         if (contacts) setAllContact(contacts);
     }, []);
-    
+
     // it must be 2nd 
     useEffect(() => {
         localStorage.setItem(KEY, JSON.stringify(allContact));
@@ -26,7 +31,7 @@ const ContactContextProvider = (props) => {
 
 
     return (
-        <ContactContext.Provider value={{ allContact, addNewContact }}>
+        <ContactContext.Provider value={{ allContact, addNewContact, contactDelete }}>
             {props.children}
         </ContactContext.Provider>
     );

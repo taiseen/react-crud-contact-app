@@ -1,6 +1,7 @@
 import { useContext, useState } from "react";
 import { ContactContext } from './Context/ContactContext';
-import { v1 as uuidV1 } from 'uuid';
+import { v1 as uuid } from 'uuid';
+import { useHistory } from "react-router";
 
 const Contact_Add = () => {
 
@@ -8,12 +9,13 @@ const Contact_Add = () => {
 
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
+    const history = useHistory();
 
     const handleSubmit = (e) => {
         e.preventDefault();
 
         if (name && email) {
-            const userInfo = { id: uuidV1(), name, email };
+            const userInfo = { id: uuid(), name, email };
             addNewContact(userInfo);
         } else {
             alert('All Field Mandatory');
@@ -21,6 +23,7 @@ const Contact_Add = () => {
 
         setName('');
         setEmail('');
+        history.push('/');
     }
 
     return (
@@ -31,6 +34,7 @@ const Contact_Add = () => {
                 <div className="field">
                     <label htmlFor="">Name</label>
                     <input
+                        required
                         type="text"
                         name='name'
                         placeholder="Name"
@@ -41,6 +45,7 @@ const Contact_Add = () => {
                 <div className="field">
                     <label htmlFor="">Email</label>
                     <input
+                        required
                         type="email"
                         name='email'
                         placeholder="Email"

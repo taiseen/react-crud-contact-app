@@ -6,10 +6,14 @@ const Contact_List = () => {
 
     const { allContact } = useContext(ContactContext);
 
-    return (
+    return ( // main
+        
         <div className="ui celled list">
+            <h1>Contact List</h1>
+            <button className="ui button blue right">Add Contact</button>
+
             {
-                allContact?.map(con => <Contact_Card info={con} key={con.name} />)
+                allContact?.map(con => <Contact_Card info={con} key={con.id} />)
             }
         </div>
     );

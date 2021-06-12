@@ -1,13 +1,24 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 const Header = () => {
+
+    const location = useLocation();
+    const path = location.pathname;
+
+    let btn;
+    if (path === '/contact_add') {
+        btn = <Link to="/"><i className="arrow circle left icon" /></Link>;
+    } else {
+        btn = <Link to="/contact_add"><i className="arrow circle right icon"></i></Link>;
+    }
 
     return (
         <div className="ui menu">
             <div className="ui container center">
                 <h2>Contact Manager</h2>
-                <Link to="/"><i className="arrow circle left icon"/> </Link>
-                <Link to="/contact_add" > <i className="arrow circle right icon"></i> </Link>
+                {
+                    btn
+                }
             </div>
         </div>
     );

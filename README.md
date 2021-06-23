@@ -29,6 +29,9 @@ Project is created with:
 <img src="./src/img/road-map.png"/>
 <br />
 
-
 ## CRUD Operations 
 <img src="./src/img/crud.png"/>
+<br />
+
+## Demo
+<img src="./src/img/demo.png"/>

@@ -8,7 +8,9 @@ const ContactContextProvider = ({ children }) => {
 
     const KEY = 'allContact';
     const [allContact, setAllContact] = useState([]);
-    console.log(allContact)
+    const [search, setSearch] = useState('');
+    const [searchResult, setSearchResult] = useState([]);
+    console.log(searchResult);
 
     // store all new contact
     const addNewContact = async (contact) => {
@@ -20,12 +22,14 @@ const ContactContextProvider = ({ children }) => {
 
     const contactDelete = async (id) => {
 
-        // delete from database 
-        await api.delete('/contact/' + id);
+        if (window.confirm(`Are you sure you want to delete it?`)) {
+            // delete from database 
+            await api.delete('/contact/' + id);
 
-        // remove & refresh from UI
-        const contacts = allContact.filter(con => con.id !== id);
-        setAllContact(contacts);
+            // remove & refresh from UI
+            const contacts = allContact.filter(con => con.id !== id);
+            setAllContact(contacts);
+        }
     }
 
     const updateContact = async (contact) => {
@@ -34,6 +38,25 @@ const ContactContextProvider = ({ children }) => {
             { ...response.data } : contact);
         setAllContact(newContact);
     }
+
+    const userSearch = () => {
+        if (search !== "") {
+            const newList = allContact.filter(contact => {
+                return Object.values(contact)
+                    .join(" ")
+                    .toLowerCase()
+                    .includes(search.toLowerCase())
+            });
+            setSearchResult(newList);
+        } else {
+            setSearchResult(allContact);
+        }
+    };
+
+    // if( search.length > 0 ){
+    //     userSearch()
+    // }
+
     // it must be 1st 
     useEffect(() => {
         // localStorage
@@ -56,7 +79,12 @@ const ContactContextProvider = ({ children }) => {
 
 
     return (
-        <ContactContext.Provider value={{ allContact, addNewContact, contactDelete, updateContact }}>
+        <ContactContext.Provider value={
+            {
+                allContact, addNewContact, userSearch, 
+                contactDelete, updateContact, setSearch
+            }
+        }>
             {children}
         </ContactContext.Provider>
     );

@@ -20,13 +20,14 @@ Project is created with:
   `"scripts": {
     "json-server" : "json-server -w ./src/db/db.json -p 8000",
   },`
+  * npm run json-server
 #
 
 ## RoadMap + Sample
 
   
 <img src="./src/img/road-map.png"/>
-<br /><br /><hr /><br />
+<br />
 
 
 ## CRUD Operations 

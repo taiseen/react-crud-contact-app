@@ -1,4 +1,6 @@
-#  React CRUD App <|> [Live Link](https://) 
+12-Jun-2021
+
+#  React CRUD App 
 
 ## Topic of Focus:
 - CRUD
@@ -11,3 +13,11 @@ Project is created with:
 * HTML 
 * Semantic-ui CSS 
 * React
+* Axios
+* JSON Server
+
+  `"scripts": {
+    "json-server" : "json-server -w ./src/db/db.json -p 8000",
+  },`
+  
+<img src="./src/img/road-map.png"/>

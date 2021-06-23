@@ -5,6 +5,8 @@ import { useHistory } from "react-router";
 
 const Contact_Add = () => {
 
+    document.title = "User Add";
+
     const { addNewContact } = useContext(ContactContext);
 
     const [name, setName] = useState('');
@@ -53,7 +55,7 @@ const Contact_Add = () => {
                         onChange={(e) => setEmail(e.target.value)} />
                 </div>
 
-                <input className="ui button blue" type="submit" value="Add Contact" />
+                <input className="ui negative button" type="submit" value="Add Contact" />
             </form>
         </div>
     );

@@ -1,12 +1,17 @@
 import { Link } from 'react-router-dom';
 import user from '../img/user.png';
 
-const Contact_Info = (props) => {
+const Contact_Info = ({ location }) => {
 
-    const { history, location, match } = props;
+    document.title = "User Info";
+
+
     const { id, name, email } = location.state;
+
     console.log(name, email);
+    
     return (
+
         <div className="main">
             <div className="ui card centered">
                 <div className="image">
@@ -17,11 +22,11 @@ const Contact_Info = (props) => {
                     <div className="description">{email}</div>
                 </div>
             </div>
-            <div className="center-div">
+            <div className="ui card centered">
                 <Link to="/">
-                    <button className="ui button blue center">
+                    <h1 className="ui negative basic button">
                         Back to Contact List
-                    </button>
+                    </h1>
                 </Link>
             </div>
         </div>

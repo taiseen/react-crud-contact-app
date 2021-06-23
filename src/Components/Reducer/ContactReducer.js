@@ -22,6 +22,7 @@ const ContactReducer = (state, action) => {
         default:
             return state;
     }
+    
 };
 
 export default ContactReducer;

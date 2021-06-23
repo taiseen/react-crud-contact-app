@@ -18,6 +18,7 @@ const Contact_Card = ({ info }) => {
     }
 
     return (
+
         <div className="item">
             <img className="ui avatar image" src={user} alt="user" />
             <div className="content">
@@ -29,8 +30,8 @@ const Contact_Card = ({ info }) => {
                     <div>{email}</div>
                     
                 </Link>
-
             </div>
+
             <i className="edit alternate outline icon blue"
                 style={iconStyle}
                 onClick={() => handleEdit(id)}></i>

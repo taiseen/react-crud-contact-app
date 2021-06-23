@@ -1,16 +1,20 @@
 // 12-Jun-2021
 import { createContext, useEffect, useState } from 'react';
+import api from '../BaseURL';
 
 export const ContactContext = createContext();
 
-const ContactContextProvider = (props) => {
+const ContactContextProvider = ({ children }) => {
 
     const KEY = 'allContact';
     const [allContact, setAllContact] = useState([]);
+    console.log(allContact)
 
     // store all new contact
-    const addNewContact = (contact) => {
-        const newContact = [...allContact, contact];
+    const addNewContact = async (contact) => {
+        // send to database
+        const response = await api.post('/contact', contact);
+        const newContact = [...allContact, response];
         setAllContact(newContact);
     }
 
@@ -18,11 +22,21 @@ const ContactContextProvider = (props) => {
         const contacts = allContact.filter(con => con.id !== id);
         setAllContact(contacts);
     }
+
     // it must be 1st 
     useEffect(() => {
-        const contacts = JSON.parse(localStorage.getItem(KEY));
-        if (contacts) setAllContact(contacts);
+        // localStorage
+        // const contacts = JSON.parse(localStorage.getItem(KEY));
+        // if (contacts) setAllContact(contacts);
+
+        (async () => {
+            console.log('axios get call')
+            const response = await api.get('/contact');
+            if (response.data) setAllContact(response.data);
+        })();
+
     }, []);
+
 
     // it must be 2nd 
     useEffect(() => {
@@ -32,7 +46,7 @@ const ContactContextProvider = (props) => {
 
     return (
         <ContactContext.Provider value={{ allContact, addNewContact, contactDelete }}>
-            {props.children}
+            {children}
         </ContactContext.Provider>
     );
 };

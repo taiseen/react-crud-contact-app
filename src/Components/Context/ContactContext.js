@@ -14,15 +14,26 @@ const ContactContextProvider = ({ children }) => {
     const addNewContact = async (contact) => {
         // send to database
         const response = await api.post('/contact', contact);
-        const newContact = [...allContact, response];
+        const newContact = [...allContact, response.data];
         setAllContact(newContact);
     }
 
-    const contactDelete = (id) => {
+    const contactDelete = async (id) => {
+
+        // delete from database 
+        await api.delete('/contact/' + id);
+
+        // remove & refresh from UI
         const contacts = allContact.filter(con => con.id !== id);
         setAllContact(contacts);
     }
 
+    const updateContact = async (contact) => {
+        const response = await api.put('/contact/' + contact.id, contact);
+        const newContact = allContact.map(contact => contact.id === response.data.id ?
+            { ...response.data } : contact);
+        setAllContact(newContact);
+    }
     // it must be 1st 
     useEffect(() => {
         // localStorage
@@ -45,7 +56,7 @@ const ContactContextProvider = ({ children }) => {
 
 
     return (
-        <ContactContext.Provider value={{ allContact, addNewContact, contactDelete }}>
+        <ContactContext.Provider value={{ allContact, addNewContact, contactDelete, updateContact }}>
             {children}
         </ContactContext.Provider>
     );

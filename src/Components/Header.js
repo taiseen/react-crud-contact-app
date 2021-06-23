@@ -6,7 +6,8 @@ const Header = () => {
     const path = location.pathname;
 
     let btn;
-    if (path === '/contact_add') {
+    if (path === '/contact_add' || path === "/contact_edit/" + ('\/[a-z0-9]\/gm') )
+    {
         btn = <Link to="/"><i className="arrow circle left icon" /></Link>;
     } else {
         btn = <Link to="/contact_add"><i className="arrow circle right icon"></i></Link>;

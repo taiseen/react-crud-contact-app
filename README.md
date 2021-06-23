@@ -3,7 +3,7 @@
 #  React CRUD App 
 
 ## Topic of Focus:
-- CRUD
+- CRUD ( get , post, put , delete )
 - Search
 - Context API
 - Reducer
@@ -16,8 +16,18 @@ Project is created with:
 * Axios
 * JSON Server
 
+#
   `"scripts": {
     "json-server" : "json-server -w ./src/db/db.json -p 8000",
   },`
+#
+
+## RoadMap + Sample
+
   
 <img src="./src/img/road-map.png"/>
+<br /><br /><hr /><br />
+
+
+## CRUD Operations 
+<img src="./src/img/crud.png"/>

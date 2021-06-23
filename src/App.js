@@ -10,6 +10,7 @@ import Contact_List from './Components/Contact_List';
 import Contact_Info from './Components/Contact_Info';
 import PageNotFound from './Components/PageNotFound';
 import ContactContextProvider from './Components/Context/ContactContext';
+import Contact_Edit from './Components/Contact_Edit';
 
 // 12-Jun-2021 
 
@@ -24,6 +25,7 @@ const App = () => {
                         <Route path="/" exact component={Contact_List} />
                         <Route path="/contact/:id" component={Contact_Info} />
                         <Route path="/contact_add" component={Contact_Add} />
+                        <Route path="/contact_edit" component={Contact_Edit} />
                         <Route path="*" component={PageNotFound} />
                     </Switch>
                 </Router>
